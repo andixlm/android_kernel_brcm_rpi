@@ -754,6 +754,16 @@ static void z3fold_zpool_unmap(void *pool, unsigned long handle)
 	z3fold_unmap(pool, handle);
 }
 
+static unsigned long z3fold_zpool_compact(void *pool)
+{
+    return 0;
+}
+
+static unsigned long z3fold_zpool_get_compacted(void *pool)
+{
+    return 0;
+}
+
 static u64 z3fold_zpool_total_size(void *pool)
 {
 	return z3fold_get_pool_size(pool) * PAGE_SIZE;
@@ -769,6 +779,8 @@ static struct zpool_driver z3fold_zpool_driver = {
 	.shrink =	z3fold_zpool_shrink,
 	.map =		z3fold_zpool_map,
 	.unmap =	z3fold_zpool_unmap,
+	.compact =	z3fold_zpool_compact,
+	.get_num_compacted =	z3fold_zpool_get_compacted,
 	.total_size =	z3fold_zpool_total_size,
 };
 
